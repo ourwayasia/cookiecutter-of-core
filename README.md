@@ -1,0 +1,1 @@
+# cookiecutter-of-core
