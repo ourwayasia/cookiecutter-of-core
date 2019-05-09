@@ -4,3 +4,7 @@
 
 /.vs
 /{{cookiecutter.project_name}}/NetCore/OF.WebShell/Properties/PublishProfiles
+/{{cookiecutter.project_name}}/NetCore/OF.WebShell/obj
+/{{cookiecutter.project_name}}/NetCore/Application/OF.{{cookiecutter.project_name}}/OF.{{cookiecutter.project_name}}/obj
+/{{cookiecutter.project_name}}/NetCore/Application/OF.{{cookiecutter.project_name}}/OF.{{cookiecutter.project_name}}.BLL/obj
+/{{cookiecutter.project_name}}/NetCore/Application/OF.{{cookiecutter.project_name}}/OF.{{cookiecutter.project_name}}.Web/obj

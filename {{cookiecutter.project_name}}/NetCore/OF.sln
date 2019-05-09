@@ -9,15 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OF.WebShell", "OF.WebShell\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{3A6DB9CB-4973-4328-A21B-FE60FCCE71DF}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ts", "Ts", "{FB806B01-ED96-4E8D-A516-784453F304F8}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "{{cookiecutter.project_name}}", "{{cookiecutter.project_name}}", "{FB806B01-ED96-4E8D-A516-784453F304F8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OF.Ts", "Application\OF.Ts\OF.Ts\OF.Ts.csproj", "{CC09A1AB-6273-4784-B0FD-514BE8A2F90C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OF.{{cookiecutter.project_name}}", "Application\OF.{{cookiecutter.project_name}}\OF.{{cookiecutter.project_name}}\OF.{{cookiecutter.project_name}}.csproj", "{CC09A1AB-6273-4784-B0FD-514BE8A2F90C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OF.Ts.BLL", "Application\OF.Ts\OF.Ts.BLL\OF.Ts.BLL.csproj", "{08472801-5CF6-43B8-961C-32AEF09491CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OF.{{cookiecutter.project_name}}.BLL", "Application\OF.{{cookiecutter.project_name}}\OF.{{cookiecutter.project_name}}.BLL\OF.{{cookiecutter.project_name}}.BLL.csproj", "{08472801-5CF6-43B8-961C-32AEF09491CF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OF.Ts.Web", "Application\OF.Ts\OF.Ts.Web\OF.Ts.Web.csproj", "{6EABDF27-6C2D-4D0A-AADA-3EB50510E0F4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OF.Packages", "OF.Packages\OF.Packages.csproj", "{D32A1914-2DDA-4DC2-B18B-6A14A4F87E08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OF.{{cookiecutter.project_name}}.Web", "Application\OF.{{cookiecutter.project_name}}\OF.{{cookiecutter.project_name}}.Web\OF.{{cookiecutter.project_name}}.Web.csproj", "{6EABDF27-6C2D-4D0A-AADA-3EB50510E0F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +39,6 @@ Global
 		{6EABDF27-6C2D-4D0A-AADA-3EB50510E0F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6EABDF27-6C2D-4D0A-AADA-3EB50510E0F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6EABDF27-6C2D-4D0A-AADA-3EB50510E0F4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D32A1914-2DDA-4DC2-B18B-6A14A4F87E08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D32A1914-2DDA-4DC2-B18B-6A14A4F87E08}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D32A1914-2DDA-4DC2-B18B-6A14A4F87E08}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D32A1914-2DDA-4DC2-B18B-6A14A4F87E08}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
