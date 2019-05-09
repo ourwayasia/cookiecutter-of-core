@@ -1,9 +1,0 @@
-{
-  "pagename": "MenuPage",
-  "pagename2": "ConfigPage",
-  "message": "Hello！ i18n !!",
-  "test": {
-    "subject": "t2",
-    "title": "t1"
-  }
-}
