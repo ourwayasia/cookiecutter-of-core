@@ -3,3 +3,8 @@
 ################################################################################
 
 /.vs
+/NetCore/Application/OF.{{cookiecutter.project_name}}/OF.{{cookiecutter.project_name}}/obj
+/NetCore/Application/OF.{{cookiecutter.project_name}}/OF.{{cookiecutter.project_name}}.BLL/obj
+/NetCore/Application/OF.{{cookiecutter.project_name}}/OF.{{cookiecutter.project_name}}.Web/obj
+/NetCore/OF.WebShell/obj
+/NetCore/OF.WebShell/Properties/PublishProfiles
