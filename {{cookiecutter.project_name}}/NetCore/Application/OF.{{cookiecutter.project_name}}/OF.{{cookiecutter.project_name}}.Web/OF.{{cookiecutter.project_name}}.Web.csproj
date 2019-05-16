@@ -12,7 +12,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\OF.Core\OF.Core.csproj" />
     <ProjectReference Include="..\OF.{{cookiecutter.project_name}}\OF.{{cookiecutter.project_name}}.csproj" />
   </ItemGroup>
 

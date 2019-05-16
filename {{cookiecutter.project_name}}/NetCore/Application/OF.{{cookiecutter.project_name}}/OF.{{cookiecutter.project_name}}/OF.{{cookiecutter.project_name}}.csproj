@@ -12,12 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\OF.Core\OF.Core.csproj" />
+    <PackageReference Include="OF.Core" Version="0.8.0" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Entities\" />
-    <Folder Include="Models\" />
-  </ItemGroup>
-
+  
 </Project>

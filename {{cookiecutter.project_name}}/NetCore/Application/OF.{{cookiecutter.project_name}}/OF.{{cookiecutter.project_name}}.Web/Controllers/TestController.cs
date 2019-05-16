@@ -16,7 +16,7 @@ namespace OF.{{cookiecutter.project_name}}.Web.Controllers
     /// <summary>
     /// 测试用，可以删除，包括IService，Service，Controller
     /// </summary>
-    [Route("ts/[controller]/[action]")]
+    [Route("Ts/[controller]/[action]")]
     public class TestController : ApiCtrlBase
     {
         private ITestService _ITestService;

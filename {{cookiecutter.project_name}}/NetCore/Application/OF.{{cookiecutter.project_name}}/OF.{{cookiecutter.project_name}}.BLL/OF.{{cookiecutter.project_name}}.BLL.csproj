@@ -12,9 +12,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\OF.Core\OF.Core.csproj" />
-    <ProjectReference Include="..\..\OF.Sys\OF.Sys\OF.Sys.csproj" />
     <ProjectReference Include="..\OF.{{cookiecutter.project_name}}\OF.{{cookiecutter.project_name}}.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="OF.Core" Version="0.8.0" />
   </ItemGroup>
 
 </Project>
