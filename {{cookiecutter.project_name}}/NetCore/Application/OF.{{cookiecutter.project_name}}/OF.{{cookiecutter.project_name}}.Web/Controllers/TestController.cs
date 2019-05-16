@@ -16,7 +16,7 @@ namespace OF.{{cookiecutter.project_name}}.Web.Controllers
     /// <summary>
     /// 测试用，可以删除，包括IService，Service，Controller
     /// </summary>
-    [Route("Ts/[controller]/[action]")]
+    [Route("{{cookiecutter.project_name}}/[controller]/[action]")]
     public class TestController : ApiCtrlBase
     {
         private ITestService _ITestService;
@@ -35,16 +35,16 @@ namespace OF.{{cookiecutter.project_name}}.Web.Controllers
 
             string url = $"{Request.Scheme}://{Request.Host.Value}/";
             
-            result.Add("GetIoCService", url + "Ts/Test/GetIoCService");
+            result.Add("GetIoCService", url + "{{cookiecutter.project_name}}/Test/GetIoCService");
 
-            result.Add("GetConfigValue", url + "Ts/Test/GetConfigValue?key=keyone");
+            result.Add("GetConfigValue", url + "{{cookiecutter.project_name}}/Test/GetConfigValue?key=keyone");
 
-            result.Add("SetSession", url + "Ts/Test/SetSession?key=keyone");
-            result.Add("GetSession", url + "Ts/Test/GetSession?key=keyone");
-            result.Add("SetCookies", url + "Ts/Test/SetCookies?key=keyone");
-            result.Add("GetCookies", url + "Ts/Test/GetCookies?key=keyone");
-            result.Add("SetCache", url + "Ts/Test/SetCache?key=keyone");
-            result.Add("GetCache", url + "Ts/Test/GetCache?key=keyone");
+            result.Add("SetSession", url + "{{cookiecutter.project_name}}/Test/SetSession?key=keyone");
+            result.Add("GetSession", url + "{{cookiecutter.project_name}}/Test/GetSession?key=keyone");
+            result.Add("SetCookies", url + "{{cookiecutter.project_name}}/Test/SetCookies?key=keyone");
+            result.Add("GetCookies", url + "{{cookiecutter.project_name}}/Test/GetCookies?key=keyone");
+            result.Add("SetCache", url + "{{cookiecutter.project_name}}/Test/SetCache?key=keyone");
+            result.Add("GetCache", url + "{{cookiecutter.project_name}}/Test/GetCache?key=keyone");
 
             StringBuilder stringBuilder = new StringBuilder();
             foreach(var item in result)
