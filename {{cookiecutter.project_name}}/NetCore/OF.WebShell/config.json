@@ -1,4 +1,4 @@
 {
-  "OF.IgnoredUrl": "login.*;/content/.*;/sys/account/.*", // ��Ȩ��������
+  "OF.IgnoredUrl": "login.*;/content/.*;/sys/account/.*;/ts/test/.*", // ��Ȩ��������
   "OF.IgnoredRequestLog": "/sys/account/login;" // �����Ϣ��¼��������
 }

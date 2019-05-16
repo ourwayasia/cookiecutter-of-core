@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup Label="Globals">
-    <SccProjectName></SccProjectName>
-    <SccProvider></SccProvider>
-    <SccAuxPath></SccAuxPath>
-    <SccLocalPath></SccLocalPath>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -12,7 +12,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Ourway.OF.Core" Version="0.8.0" />
+    <ProjectReference Include="..\..\..\OF.Core\OF.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Entities\" />
+    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>

@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup Label="Globals">
-    <SccProjectName></SccProjectName>
-    <SccProvider></SccProvider>
-    <SccAuxPath></SccAuxPath>
-    <SccLocalPath></SccLocalPath>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -16,9 +16,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Application\OF.Sys\OF.Sys.BLL\OF.Sys.BLL.csproj" />
+    <ProjectReference Include="..\Application\OF.Sys\OF.Sys.Web\OF.Sys.Web.csproj" />
+    <ProjectReference Include="..\Application\OF.Sys\OF.Sys\OF.Sys.csproj" />
     <ProjectReference Include="..\Application\OF.{{cookiecutter.project_name}}\OF.{{cookiecutter.project_name}}.BLL\OF.{{cookiecutter.project_name}}.BLL.csproj" />
     <ProjectReference Include="..\Application\OF.{{cookiecutter.project_name}}\OF.{{cookiecutter.project_name}}.Web\OF.{{cookiecutter.project_name}}.Web.csproj" />
     <ProjectReference Include="..\Application\OF.{{cookiecutter.project_name}}\OF.{{cookiecutter.project_name}}\OF.{{cookiecutter.project_name}}.csproj" />
+    <ProjectReference Include="..\OF.Core\OF.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +30,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="config.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="configioc.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

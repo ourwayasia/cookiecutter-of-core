@@ -1,0 +1,5 @@
+{
+  "OF.IoC.Many": ".*IEntityMap.*", //��Ҫ���ʵ��ƥ������
+  "OF.IoC.Ignored": ".*Middleware.*;.*DbContextCore.*;.*ICRUDServiceBase.*", //���Է�������ƥ������
+  "OF.{{cookiecutter.project_name}}.IServices.IIoCTestService": "OF.{{cookiecutter.project_name}}.BLL.IoCTestTwoService"
+}
