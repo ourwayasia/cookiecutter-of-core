@@ -9,11 +9,11 @@ using Newtonsoft.Json.Serialization;
 using OF.Core;
 using OF.Core.DbContextCore;
 using OF.Core.Extensions;
-using OF.Core.Filters;
 using OF.Core.Helpers;
 using OF.Core.IoC;
 using OF.Core.Jwt;
 using OF.Core.Middleware;
+using OF.Core.Service;
 using OF.Core.Web;
 using System;
 using System.Threading.Tasks;
@@ -58,13 +58,9 @@ namespace OF.WebShell
                 .AddOFServices()
                 .Configure<DbContextOption>(options => options.ConnectionString = Configuration.GetConnectionString("connectionString"))
                 .AddDistributedRedisCache(option => option.Configuration = Configuration.GetConnectionString("redisconnectionString"))
-                .AddSingleton(Configuration)
                 .AddTransient<IDbContextCore, SqlServerDbContext>()
                 .AddJwt(Configuration)
-                .AddMvc(options =>
-                {
-                    options.Filters.Add(new GlobalExceptionFilter());
-                })
+                .AddMvc()
                 .AddJsonOptions(options =>
                 {
                     // 忽略循环引用

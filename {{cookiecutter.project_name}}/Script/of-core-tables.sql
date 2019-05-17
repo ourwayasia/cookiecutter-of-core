@@ -1,1 +1,459 @@
-ï»¿
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[common_fields](
+	[Id] [nvarchar](64) NOT NULL,
+	[TenantId] [nvarchar](64) NULL,
+	[SortNum] [int] NULL,
+	[CreatorId] [nvarchar](64) NULL,
+	[CreatorName] [nvarchar](64) NULL,
+	[CreateDate] [datetime] NULL,
+	[Status] [int] NULL,
+	[IsDeleted] [int] NULL,
+	[Timestamp] [nvarchar](64) NULL
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[sys_config](
+	[Id] [nvarchar](64) NOT NULL,
+	[ConfigName] [nvarchar](64) NULL,
+	[Description] [nvarchar](1024) NULL,
+	[ConfigType] [int] NULL,
+	[ConfigKey] [nvarchar](64) NULL,
+	[ConfigValue] [text] NULL,
+	[SortNum] [int] NULL,
+	[IsDeleted] [int] NULL,
+	[Timestamp] [nvarchar](64) NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[sys_department](
+	[Id] [nvarchar](64) NOT NULL,
+	[TenantId] [nvarchar](64) NULL,
+	[ParentId] [nvarchar](64) NULL,
+	[No] [nvarchar](64) NULL,
+	[Name] [nvarchar](64) NULL,
+	[SortNum] [int] NULL,
+	[Status] [int] NULL,
+	[SourceType] [int] NULL,
+	[ThirdId] [nvarchar](64) NULL,
+	[IsDeleted] [int] NULL,
+	[Timestamp] [nvarchar](64) NULL
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[sys_dictionary](
+	[Id] [nvarchar](64) NOT NULL,
+	[ParentId] [nvarchar](64) NULL,
+	[ItemKey] [nvarchar](64) NULL,
+	[ItemText] [nvarchar](64) NULL,
+	[ItemValue] [nvarchar](512) NULL,
+	[SortNum] [int] NULL,
+	[Status] [int] NULL,
+	[Timestamp] [nvarchar](64) NULL
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[sys_employee](
+	[Id] [nvarchar](64) NOT NULL,
+	[TenantId] [nvarchar](64) NULL,
+	[EmployeeNo] [nvarchar](64) NULL,
+	[Account] [nvarchar](64) NULL,
+	[Password] [nvarchar](64) NULL,
+	[Nickname] [nvarchar](128) NULL,
+	[RealName] [nvarchar](128) NULL,
+	[Spell] [nvarchar](64) NULL,
+	[MobileNo] [nvarchar](64) NULL,
+	[Email] [nvarchar](64) NULL,
+	[HeadPicture] [nvarchar](512) NULL,
+	[Sex] [int] NULL,
+	[Birthday] [datetime] NULL,
+	[DepartmentId] [nvarchar](64) NULL,
+	[DepartmentName] [nvarchar](64) NULL,
+	[Level] [int] NULL,
+	[IsStaff] [int] NULL,
+	[SortNum] [int] NULL,
+	[Status] [int] NULL,
+	[SourceType] [int] NULL,
+	[ThirdId] [nvarchar](64) NULL,
+	[LastModifyPwdDate] [datetime] NULL,
+	[IsDeleted] [int] NULL,
+	[Timestamp] [nvarchar](64) NULL
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[sys_file](
+	[Id] [nvarchar](64) NOT NULL,
+	[TenantId] [nvarchar](64) NULL,
+	[FileName] [nvarchar](128) NULL,
+	[ExtensionName] [nvarchar](16) NULL,
+	[FullName] [nvarchar](128) NULL,
+	[StorePath] [text] NULL,
+	[FileSize] [bigint] NULL,
+	[IsImage] [int] NULL,
+	[ImageWidth] [int] NULL,
+	[ImageHeight] [int] NULL,
+	[CreatorId] [nvarchar](64) NULL,
+	[CreatorName] [nvarchar](64) NULL,
+	[CreateDate] [datetime] NULL,
+	[Status] [int] NULL,
+	[Timestamp] [nvarchar](64) NULL,
+	[BusinessType] [nvarchar](64) NULL,
+	[BusinessId] [nvarchar](64) NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[sys_log](
+	[Id] [nvarchar](64) NOT NULL,
+	[TenantId] [nvarchar](64) NULL,
+	[OperationName] [nvarchar](64) NULL,
+	[OperationContent] [nvarchar](2048) NULL,
+	[CreatorId] [nvarchar](64) NULL,
+	[CreatorName] [nvarchar](64) NULL,
+	[CreateDate] [datetime] NULL,
+	[Timestamp] [nvarchar](64) NULL,
+ CONSTRAINT [PK_SYS_LOG] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[sys_menu](
+	[Id] [nvarchar](64) NOT NULL,
+	[TenantId] [nvarchar](64) NULL,
+	[MenuName] [nvarchar](64) NULL,
+	[ParentId] [nvarchar](64) NULL,
+	[MenuUrl] [nvarchar](512) NULL,
+	[TargetType] [nvarchar](64) NULL,
+	[IconCss] [nvarchar](64) NULL,
+	[ModuleKey] [nvarchar](64) NULL,
+	[SortNum] [int] NULL,
+	[Status] [int] NULL,
+	[IsDeleted] [int] NULL,
+	[Timestamp] [nvarchar](64) NULL,
+	[IsQuickMenu] [int] NULL
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[sys_mobile_verification_record](
+	[Id] [nvarchar](64) NOT NULL,
+	[TenantId] [nvarchar](64) NULL,
+	[MobileNo] [nvarchar](64) NULL,
+	[VerificationCode] [nvarchar](64) NULL,
+	[CreateDate] [datetime] NULL,
+	[ExpireDate] [datetime] NULL,
+	[Status] [int] NULL,
+	[Timestamp] [nvarchar](64) NULL,
+ CONSTRAINT [PK_SYS_MOBILE_VERIFICATION_REC] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[sys_module](
+	[Id] [nvarchar](64) NOT NULL,
+	[TenantId] [nvarchar](64) NULL,
+	[ModuleKey] [nvarchar](64) NULL,
+	[ModuleName] [nvarchar](64) NULL,
+	[ApplicationName] [nvarchar](64) NULL,
+	[SortNum] [int] NULL,
+	[Status] [int] NULL,
+	[IsDeleted] [int] NULL,
+	[Timestamp] [nvarchar](64) NULL
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[sys_permission](
+	[Id] [nvarchar](64) NOT NULL,
+	[TenantId] [nvarchar](64) NULL,
+	[Name] [nvarchar](64) NULL,
+	[ModuleId] [nvarchar](64) NULL,
+	[ModuleKey] [nvarchar](64) NULL,
+	[Operations] [nvarchar](1024) NULL,
+	[Actions] [text] NULL,
+	[Timestamp] [nvarchar](64) NULL,
+	[SortNum] [int] NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[sys_role](
+	[Id] [nvarchar](64) NOT NULL,
+	[TenantId] [nvarchar](64) NULL,
+	[RoleName] [nvarchar](128) NULL,
+	[SortNum] [int] NULL,
+	[Status] [int] NULL,
+	[IsDeleted] [int] NULL,
+	[Timestamp] [nvarchar](64) NULL,
+ CONSTRAINT [PK_SYS_ROLE] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[sys_role_member](
+	[Id] [nvarchar](64) NOT NULL,
+	[TenantId] [nvarchar](64) NULL,
+	[RoleId] [nvarchar](64) NULL,
+	[MemberType] [int] NULL,
+	[MemberId] [nvarchar](64) NULL,
+	[MemberName] [nvarchar](64) NULL,
+	[Timestamp] [nvarchar](64) NULL,
+ CONSTRAINT [PK_SYS_ROLE_MEMBER] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[sys_role_permission](
+	[Id] [nvarchar](64) NOT NULL,
+	[TenantId] [nvarchar](64) NULL,
+	[RoleId] [nvarchar](64) NULL,
+	[PermissionId] [nvarchar](64) NULL,
+	[Timestamp] [nvarchar](64) NULL
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[sys_tenant](
+	[Id] [nvarchar](64) NOT NULL,
+	[Code] [nvarchar](64) NOT NULL,
+	[Name] [nvarchar](128) NULL,
+	[Description] [nvarchar](512) NULL,
+	[ParentId] [nvarchar](64) NULL,
+	[Lang] [nvarchar](64) NULL,
+	[TimeZone] [int] NULL,
+	[AuthUserCount] [int] NULL,
+	[ExpireDate] [datetime] NULL,
+	[Theme] [nvarchar](64) NULL,
+	[SortNum] [int] NULL,
+	[Status] [int] NOT NULL,
+	[CreatorId] [nvarchar](64) NULL,
+	[CreatorName] [nvarchar](64) NULL,
+	[CreateDate] [datetime] NULL,
+	[IsDeleted] [int] NULL,
+	[Timestamp] [nvarchar](64) NULL,
+ CONSTRAINT [PK_SYS_TENANT] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ö÷¼üId' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'common_fields', @level2type=N'COLUMN',@level2name=N'Id'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'×â»§Id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'common_fields', @level2type=N'COLUMN',@level2name=N'TenantId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÅÅÐòºÅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'common_fields', @level2type=N'COLUMN',@level2name=N'SortNum'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'´´½¨ÈËId' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'common_fields', @level2type=N'COLUMN',@level2name=N'CreatorId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'´´½¨ÈËÃû³Æ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'common_fields', @level2type=N'COLUMN',@level2name=N'CreatorName'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'´´½¨Ê±¼ä' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'common_fields', @level2type=N'COLUMN',@level2name=N'CreateDate'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'×´Ì¬(0-½ûÓÃ 1-ÆôÓÃ)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'common_fields', @level2type=N'COLUMN',@level2name=N'Status'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Âß¼­É¾³ý±êÊ¶(0-Õý³£ 1-ÒÑÉ¾³ý)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'common_fields', @level2type=N'COLUMN',@level2name=N'IsDeleted'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ê±¼ä´Á' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'common_fields', @level2type=N'COLUMN',@level2name=N'Timestamp'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'³£ÓÃ¹«¹²×Ö¶Î' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'common_fields'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ö÷¼üId' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_config', @level2type=N'COLUMN',@level2name=N'Id'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÅäÖÃÃû³Æ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_config', @level2type=N'COLUMN',@level2name=N'ConfigName'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÅäÖÃÃèÊö' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_config', @level2type=N'COLUMN',@level2name=N'Description'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÅäÖÃÀàÐÍ£¨0-¿Í»§ÅäÖÃ 1-ÏµÍ³ÅäÖÃ£©' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_config', @level2type=N'COLUMN',@level2name=N'ConfigType'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÅäÖÃ¼ü' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_config', @level2type=N'COLUMN',@level2name=N'ConfigKey'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÅäÖÃÏîÖµ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_config', @level2type=N'COLUMN',@level2name=N'ConfigValue'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÅÅÐòºÅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_config', @level2type=N'COLUMN',@level2name=N'SortNum'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Âß¼­É¾³ý±êÊ¶(0-Õý³£ 1-ÒÑÉ¾³ý)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_config', @level2type=N'COLUMN',@level2name=N'IsDeleted'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ê±¼ä´Á' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_config', @level2type=N'COLUMN',@level2name=N'Timestamp'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÏµÍ³ÅäÖÃ±í' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_config'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ö÷¼üId' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_department', @level2type=N'COLUMN',@level2name=N'Id'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'×â»§Id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_department', @level2type=N'COLUMN',@level2name=N'TenantId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÉÏ¼¶²¿ÃÅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_department', @level2type=N'COLUMN',@level2name=N'ParentId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'²¿ÃÅ±àºÅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_department', @level2type=N'COLUMN',@level2name=N'No'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'²¿ÃÅÃû³Æ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_department', @level2type=N'COLUMN',@level2name=N'Name'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÅÅÐò' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_department', @level2type=N'COLUMN',@level2name=N'SortNum'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'×´Ì¬±êÊ¶(0-½ûÓÃ 1-ÒÑÆôÓÃ)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_department', @level2type=N'COLUMN',@level2name=N'Status'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Êý¾ÝÀ´Ô´£¨0-Ä¬ÈÏ 1-£©' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_department', @level2type=N'COLUMN',@level2name=N'SourceType'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'µÚÈý·½Id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_department', @level2type=N'COLUMN',@level2name=N'ThirdId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Âß¼­É¾³ý±êÊ¶£¨0-Õý³£ 1-ÒÑÉ¾³ý£©' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_department', @level2type=N'COLUMN',@level2name=N'IsDeleted'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ê±¼ä´Á' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_department', @level2type=N'COLUMN',@level2name=N'Timestamp'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÏµÍ³²¿ÃÅ±í' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_department'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ö÷¼üId' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_dictionary', @level2type=N'COLUMN',@level2name=N'Id'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÉÏ¼¶×Öµä' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_dictionary', @level2type=N'COLUMN',@level2name=N'ParentId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'×Öµä´úÂë' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_dictionary', @level2type=N'COLUMN',@level2name=N'ItemKey'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÏÔÊ¾ÎÄ±¾' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_dictionary', @level2type=N'COLUMN',@level2name=N'ItemText'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'¹ØÁªÏîÖµ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_dictionary', @level2type=N'COLUMN',@level2name=N'ItemValue'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÅÅÐòºÅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_dictionary', @level2type=N'COLUMN',@level2name=N'SortNum'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'×´Ì¬±êÊ¶(0-½ûÓÃ 1-ÆôÓÃ)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_dictionary', @level2type=N'COLUMN',@level2name=N'Status'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ê±¼ä´Á' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_dictionary', @level2type=N'COLUMN',@level2name=N'Timestamp'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÏµÍ³Êý¾Ý×Öµä' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_dictionary'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ö÷¼üId' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee', @level2type=N'COLUMN',@level2name=N'Id'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'×â»§Id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee', @level2type=N'COLUMN',@level2name=N'TenantId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ô±¹¤ºÅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee', @level2type=N'COLUMN',@level2name=N'EmployeeNo'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÕËºÅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee', @level2type=N'COLUMN',@level2name=N'Account'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÃÜÂë' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee', @level2type=N'COLUMN',@level2name=N'Password'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'êÇ³Æ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee', @level2type=N'COLUMN',@level2name=N'Nickname'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÕæÊµÐÕÃû' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee', @level2type=N'COLUMN',@level2name=N'RealName'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÐÕÃûÆ´Òô' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee', @level2type=N'COLUMN',@level2name=N'Spell'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÁªÏµµç»°' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee', @level2type=N'COLUMN',@level2name=N'MobileNo'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'µç×ÓÓÊÏä' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee', @level2type=N'COLUMN',@level2name=N'Email'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Í·Ïñ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee', @level2type=N'COLUMN',@level2name=N'HeadPicture'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÐÔ±ð' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee', @level2type=N'COLUMN',@level2name=N'Sex'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÉúÈÕ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee', @level2type=N'COLUMN',@level2name=N'Birthday'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'²¿ÃÅId' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee', @level2type=N'COLUMN',@level2name=N'DepartmentId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'²¿ÃÅÃû³Æ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee', @level2type=N'COLUMN',@level2name=N'DepartmentName'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ö°¼¶' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee', @level2type=N'COLUMN',@level2name=N'Level'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÊÇ·ñÄÚ²¿Ô±¹¤' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee', @level2type=N'COLUMN',@level2name=N'IsStaff'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÅÅÐòºÅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee', @level2type=N'COLUMN',@level2name=N'SortNum'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'×´Ì¬£¨0-½ûÓÃ 1-ÆôÓÃ£©' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee', @level2type=N'COLUMN',@level2name=N'Status'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Êý¾ÝÀ´Ô´£¨0-Ä¬ÈÏ 1-£©' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee', @level2type=N'COLUMN',@level2name=N'SourceType'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'µÚÈý·½Id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee', @level2type=N'COLUMN',@level2name=N'ThirdId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'×îºóÐÞ¸ÄÃÜÂëÊ±¼ä' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee', @level2type=N'COLUMN',@level2name=N'LastModifyPwdDate'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Âß¼­É¾³ý×´Ì¬£¨0-Õý³£ 1-É¾³ý£©' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee', @level2type=N'COLUMN',@level2name=N'IsDeleted'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ê±¼ä´Á' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee', @level2type=N'COLUMN',@level2name=N'Timestamp'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÏµÍ³Ô±¹¤±í' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ö÷¼üId' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_file', @level2type=N'COLUMN',@level2name=N'Id'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'×â»§Id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_file', @level2type=N'COLUMN',@level2name=N'TenantId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÎÄ¼þÃû' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_file', @level2type=N'COLUMN',@level2name=N'FileName'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'À©Õ¹Ãû' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_file', @level2type=N'COLUMN',@level2name=N'ExtensionName'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÍêÕûÎÄ¼þÃû' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_file', @level2type=N'COLUMN',@level2name=N'FullName'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'´æ´¢Â·¾¶(Ïà¶Ô¸ùÄ¿Â¼µÄÂ·¾¶)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_file', @level2type=N'COLUMN',@level2name=N'StorePath'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÎÄ¼þ´óÐ¡' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_file', @level2type=N'COLUMN',@level2name=N'FileSize'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÊÇ·ñÍ¼Æ¬ÀàÐÍÎÄ¼þ£¨0-·ñ 1-ÊÇ£©' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_file', @level2type=N'COLUMN',@level2name=N'IsImage'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Í¼Æ¬¿í¶Èpx' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_file', @level2type=N'COLUMN',@level2name=N'ImageWidth'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Í¼Æ¬¸ß¶Èpx' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_file', @level2type=N'COLUMN',@level2name=N'ImageHeight'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'´´½¨ÓÃ»§ID' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_file', @level2type=N'COLUMN',@level2name=N'CreatorId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'´´½¨ÓÃ»§Ãû³Æ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_file', @level2type=N'COLUMN',@level2name=N'CreatorName'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'´´½¨Ê±¼ä' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_file', @level2type=N'COLUMN',@level2name=N'CreateDate'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'×´Ì¬£¨0-ÁÙÊ±ÎÄ¼þ 1-ÕýÊ½ÎÄ¼þ£©' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_file', @level2type=N'COLUMN',@level2name=N'Status'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ê±¼ä´Á' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_file', @level2type=N'COLUMN',@level2name=N'Timestamp'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÏµÍ³ÅäÖÃ±í' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_file'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ö÷¼üId' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_log', @level2type=N'COLUMN',@level2name=N'Id'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'×â»§Id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_log', @level2type=N'COLUMN',@level2name=N'TenantId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'²Ù×÷ÀàÐÍ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_log', @level2type=N'COLUMN',@level2name=N'OperationName'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'²Ù×÷ÄÚÈÝ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_log', @level2type=N'COLUMN',@level2name=N'OperationContent'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'´´½¨ÓÃ»§Id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_log', @level2type=N'COLUMN',@level2name=N'CreatorId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'´´½¨ÓÃ»§ÐÕÃû' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_log', @level2type=N'COLUMN',@level2name=N'CreatorName'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'´´½¨ÓÃ»§Ê±¼ä' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_log', @level2type=N'COLUMN',@level2name=N'CreateDate'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ê±¼ä´Á' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_log', @level2type=N'COLUMN',@level2name=N'Timestamp'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÏµÍ³ÈÕÖ¾±í' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_log'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ö÷¼üId' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_menu', @level2type=N'COLUMN',@level2name=N'Id'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'×â»§Id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_menu', @level2type=N'COLUMN',@level2name=N'TenantId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'²Ëµ¥±êÌâ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_menu', @level2type=N'COLUMN',@level2name=N'MenuName'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÉÏ¼¶²Ëµ¥Id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_menu', @level2type=N'COLUMN',@level2name=N'ParentId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'²Ëµ¥µØÖ·' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_menu', @level2type=N'COLUMN',@level2name=N'MenuUrl'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ä¿±êÀàÐÍ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_menu', @level2type=N'COLUMN',@level2name=N'TargetType'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Í¼±êÑùÊ½' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_menu', @level2type=N'COLUMN',@level2name=N'IconCss'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ä£¿é±àÂë' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_menu', @level2type=N'COLUMN',@level2name=N'ModuleKey'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÅÅÐòºÅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_menu', @level2type=N'COLUMN',@level2name=N'SortNum'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'×´Ì¬(0-½ûÓÃ 1-ÆôÓÃ)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_menu', @level2type=N'COLUMN',@level2name=N'Status'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Âß¼­É¾³ý±êÊ¶£¨0-Õý³£ 1-ÒÑÉ¾³ý£©' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_menu', @level2type=N'COLUMN',@level2name=N'IsDeleted'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ê±¼ä´Á' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_menu', @level2type=N'COLUMN',@level2name=N'Timestamp'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÏµÍ³²Ëµ¥±í' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_menu'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ö÷¼üId' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_mobile_verification_record', @level2type=N'COLUMN',@level2name=N'Id'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'×â»§Id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_mobile_verification_record', @level2type=N'COLUMN',@level2name=N'TenantId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÊÖ»úºÅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_mobile_verification_record', @level2type=N'COLUMN',@level2name=N'MobileNo'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÑéÖ¤Âë' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_mobile_verification_record', @level2type=N'COLUMN',@level2name=N'VerificationCode'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'´´½¨Ê±¼ä' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_mobile_verification_record', @level2type=N'COLUMN',@level2name=N'CreateDate'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'¹ýÆÚÊ±¼ä' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_mobile_verification_record', @level2type=N'COLUMN',@level2name=N'ExpireDate'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'×´Ì¬£¨Ä¬ÈÏ£º0£©' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_mobile_verification_record', @level2type=N'COLUMN',@level2name=N'Status'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ê±¼ä´Á' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_mobile_verification_record', @level2type=N'COLUMN',@level2name=N'Timestamp'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÊÖ»úÑéÖ¤Âë¼ÇÂ¼±í' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_mobile_verification_record'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ö÷¼üId' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_module', @level2type=N'COLUMN',@level2name=N'Id'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'×â»§Id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_module', @level2type=N'COLUMN',@level2name=N'TenantId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ä£¿é±àÂë' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_module', @level2type=N'COLUMN',@level2name=N'ModuleKey'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ä£¿éÃû³Æ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_module', @level2type=N'COLUMN',@level2name=N'ModuleName'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ó¦ÓÃÃû³Æ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_module', @level2type=N'COLUMN',@level2name=N'ApplicationName'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÅÅÐòºÅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_module', @level2type=N'COLUMN',@level2name=N'SortNum'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'×´Ì¬ (0-½ûÓÃ 1-ÆôÓÃ)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_module', @level2type=N'COLUMN',@level2name=N'Status'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'É¾³ý±ê¼Ç(0-Õý³£ 1-ÒÑÉ¾³ý)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_module', @level2type=N'COLUMN',@level2name=N'IsDeleted'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ê±¼ä´Á' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_module', @level2type=N'COLUMN',@level2name=N'Timestamp'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÏµÍ³Ä£¿é±í' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_module'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ö÷¼üId' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_permission', @level2type=N'COLUMN',@level2name=N'Id'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'×â»§Id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_permission', @level2type=N'COLUMN',@level2name=N'TenantId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'È¨ÏÞÃû³Æ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_permission', @level2type=N'COLUMN',@level2name=N'Name'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ä£¿éId' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_permission', @level2type=N'COLUMN',@level2name=N'ModuleId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ä£¿é±àÂë' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_permission', @level2type=N'COLUMN',@level2name=N'ModuleKey'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'²Ù×÷±êÊ¶¼¯ºÏ,¶à¸ö| ·Ö¸î' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_permission', @level2type=N'COLUMN',@level2name=N'Operations'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÇëÇóµØÖ·¼¯ºÏ,¶à¸ö|·Ö¸î' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_permission', @level2type=N'COLUMN',@level2name=N'Actions'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ê±¼ä´Á' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_permission', @level2type=N'COLUMN',@level2name=N'Timestamp'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÏµÍ³È¨ÏÞ±í' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_permission'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ö÷¼üId' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_role', @level2type=N'COLUMN',@level2name=N'Id'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'×â»§Id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_role', @level2type=N'COLUMN',@level2name=N'TenantId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'½ÇÉ«Ãû³Æ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_role', @level2type=N'COLUMN',@level2name=N'RoleName'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÅÅÐòºÅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_role', @level2type=N'COLUMN',@level2name=N'SortNum'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'×´Ì¬±êÊ¶(0-½ûÓÃ 1-ÆôÓÃ)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_role', @level2type=N'COLUMN',@level2name=N'Status'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'É¾³ý±êÊ¶(0-Õý³£ 1-ÒÑÉ¾³ý)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_role', @level2type=N'COLUMN',@level2name=N'IsDeleted'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ê±¼ä´Á' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_role', @level2type=N'COLUMN',@level2name=N'Timestamp'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÏµÍ³½ÇÉ«±í' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_role'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ö÷¼üId' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_role_member', @level2type=N'COLUMN',@level2name=N'Id'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'×â»§Id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_role_member', @level2type=N'COLUMN',@level2name=N'TenantId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'½ÇÉ«Id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_role_member', @level2type=N'COLUMN',@level2name=N'RoleId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'³ÉÔ±ÀàÐÍ,1:Ô±¹¤,2:²¿ÃÅ,3:Ô±¹¤×é' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_role_member', @level2type=N'COLUMN',@level2name=N'MemberType'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'³ÉÔ±Id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_role_member', @level2type=N'COLUMN',@level2name=N'MemberId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ãû³Æ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_role_member', @level2type=N'COLUMN',@level2name=N'MemberName'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ê±¼ä´Á' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_role_member', @level2type=N'COLUMN',@level2name=N'Timestamp'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÏµÍ³½ÇÉ«³ÉÔ±±í' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_role_member'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ö÷¼üId' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_role_permission', @level2type=N'COLUMN',@level2name=N'Id'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'×â»§Id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_role_permission', @level2type=N'COLUMN',@level2name=N'TenantId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'½ÇÉ«Id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_role_permission', @level2type=N'COLUMN',@level2name=N'RoleId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'È¨ÏÞId' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_role_permission', @level2type=N'COLUMN',@level2name=N'PermissionId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ê±¼ä´Á' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_role_permission', @level2type=N'COLUMN',@level2name=N'Timestamp'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÏµÍ³½ÇÉ«È¨ÏÞ±í' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_role_permission'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ö÷¼üID' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_tenant', @level2type=N'COLUMN',@level2name=N'Id'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'×â»§±àÂë' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_tenant', @level2type=N'COLUMN',@level2name=N'Code'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'×â»§Ãû³Æ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_tenant', @level2type=N'COLUMN',@level2name=N'Name'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'×â»§ÃèÊö' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_tenant', @level2type=N'COLUMN',@level2name=N'Description'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÉÏ¼¶×â»§ID' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_tenant', @level2type=N'COLUMN',@level2name=N'ParentId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÓïÑÔ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_tenant', @level2type=N'COLUMN',@level2name=N'Lang'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ê±Çø' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_tenant', @level2type=N'COLUMN',@level2name=N'TimeZone'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'×î´óÊÚÈ¨ÓÃ»§Êý' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_tenant', @level2type=N'COLUMN',@level2name=N'AuthUserCount'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'¹ýÆÚÊ±¼ä' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_tenant', @level2type=N'COLUMN',@level2name=N'ExpireDate'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ä¬ÈÏ·ç¸ñ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_tenant', @level2type=N'COLUMN',@level2name=N'Theme'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ÏÔÊ¾ÐòºÅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_tenant', @level2type=N'COLUMN',@level2name=N'SortNum'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'×â»§×´Ì¬£¨0-½ûÓÃ 1-ÆôÓÃ£©' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_tenant', @level2type=N'COLUMN',@level2name=N'Status'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'´´½¨ÈËID' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_tenant', @level2type=N'COLUMN',@level2name=N'CreatorId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'´´½¨ÈËÐÕÃû' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_tenant', @level2type=N'COLUMN',@level2name=N'CreatorName'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'´´½¨Ê±¼ä' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_tenant', @level2type=N'COLUMN',@level2name=N'CreateDate'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Âß¼­É¾³ý×´Ì¬(0-Õý³£ 1-ÒÑÉ¾³ý£©' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_tenant', @level2type=N'COLUMN',@level2name=N'IsDeleted'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ê±¼ä´Á' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_tenant', @level2type=N'COLUMN',@level2name=N'Timestamp'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'×â»§±í' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_tenant'
