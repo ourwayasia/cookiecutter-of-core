@@ -111,42 +111,31 @@ namespace OF.{{cookiecutter.project_name}}.BLL
         public string Insert(bool success)
         {
             //插入数据
-            string msg = string.Empty;
 
-            try
+            var service1 = AspectCoreContainer.Resolve<ICRUDService<sys_log>>();
+            sys_log e1 = new sys_log()
             {
-                var service1 = AspectCoreContainer.Resolve<ICRUDService<sys_log>>();
-                sys_log e1 = new sys_log()
-                {
-                    Id = GuidExtensions.NewComb().ToString(),
-                    CreateDate = DateTime.Now
-                };
-                int i1 = service1.Insert(e1);
+                Id = GuidExtensions.NewComb().ToString(),
+                CreateDate = DateTime.Now
+            };
+            int i1 = service1.Insert(e1);
 
-                var service2 = AspectCoreContainer.Resolve<ICRUDService<sys_file>>();
-                string id = success ? GuidExtensions.NewComb().ToString() : GuidExtensions.NewComb().ToString().PadRight(100, '0');
-                sys_file e2 = new sys_file()
-                {
-                    Id = id,
-                    CreateDate = DateTime.Now
-                };
-                int i2 = service2.Insert(e2);
-
-                msg = $"成功{i1},{i2}";
-            }
-            catch (Exception ex)
+            var service2 = AspectCoreContainer.Resolve<ICRUDService<sys_file>>();
+            string id = success ? GuidExtensions.NewComb().ToString() : GuidExtensions.NewComb().ToString().PadRight(100, '0');
+            sys_file e2 = new sys_file()
             {
-                msg = ex.Message;
-            }
+                Id = id,
+                CreateDate = DateTime.Now
+            };
+            int i2 = service2.Insert(e2);
 
-            return msg;
+            return $"成功{i1},{i2}";
+
         }
 
         public string InsertUseDbContextTransaction(bool success)
         {
             //插入数据，使用数据库事务，不支持多连接。
-            string msg = string.Empty;
-
             var db = AspectCoreContainer.Resolve<IDbContextCore>();
             using (IDbContextTransaction trans = db.BeginTransaction())
             {
@@ -171,21 +160,19 @@ namespace OF.{{cookiecutter.project_name}}.BLL
 
                     trans.Commit();
 
-                    msg = $"成功{i1},{i2}";
+                    return $"成功{i1},{i2}";
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    msg = ex.Message;
                     trans.Rollback();
+                    throw;
                 }
             }
-            return msg;
         }
 
         public string InsertUseTransactionScope(bool success)
         {
             //插入数据，使用数据库事务，多连接时会命名用到MSDTC
-            string msg = string.Empty;
             using (TransactionScope trans = new TransactionScope())
             {
                 try
@@ -209,15 +196,14 @@ namespace OF.{{cookiecutter.project_name}}.BLL
 
                     trans.Complete();
 
-                    msg = $"成功{i1},{i2}";
+                    return $"成功{i1},{i2}";
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    msg = ex.Message;
                     Transaction.Current.Rollback();
+                    throw;
                 }
             }
-            return msg;
         } 
         #endregion
     }
