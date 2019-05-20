@@ -27,5 +27,8 @@ namespace OF.{{cookiecutter.project_name}}.IServices
         string SetCache(string key, string value);
         string GetCache(string key);
 
+        string Insert(bool success);
+        string InsertUseDbContextTransaction(bool success);
+        string InsertUseTransactionScope(bool success);
     }
 }

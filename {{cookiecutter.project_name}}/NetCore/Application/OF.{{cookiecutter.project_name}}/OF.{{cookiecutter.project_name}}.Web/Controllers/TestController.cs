@@ -46,6 +46,13 @@ namespace OF.{{cookiecutter.project_name}}.Web.Controllers
             result.Add("SetCache", url + "{{cookiecutter.project_name}}/Test/SetCache?key=keyone");
             result.Add("GetCache", url + "{{cookiecutter.project_name}}/Test/GetCache?key=keyone");
 
+            result.Add("InsertTrue", url + "{{cookiecutter.project_name}}/Test/Insert?success=true");
+            result.Add("InsertFalse", url + "{{cookiecutter.project_name}}/Test/Insert?success=false");
+            result.Add("InsertUseDbContextTransactionTrue", url + "{{cookiecutter.project_name}}/Test/InsertUseDbContextTransaction?success=true");
+            result.Add("InsertUseDbContextTransactionFalse", url + "{{cookiecutter.project_name}}/Test/InsertUseDbContextTransaction?success=false");
+            result.Add("InsertUseTransactionScopeTrue", url + "{{cookiecutter.project_name}}/Test/InsertUseTransactionScope?success=true");
+            result.Add("InsertUseTransactionScopeFalse", url + "{{cookiecutter.project_name}}/Test/InsertUseTransactionScope?success=false");
+
             StringBuilder stringBuilder = new StringBuilder();
             foreach(var item in result)
             {
@@ -103,7 +110,25 @@ namespace OF.{{cookiecutter.project_name}}.Web.Controllers
         public ActionResult<CallResult> GetCache(string key)
         {
             return CallResult.Create(_ITestService.GetCache(key));
-        } 
+        }
         #endregion
+
+        [HttpGet]
+        public ActionResult<CallResult> Insert(bool success)
+        {
+            return CallResult.Create(_ITestService.Insert(success));
+        }
+
+        [HttpGet]
+        public ActionResult<CallResult> InsertUseDbContextTransaction(bool success)
+        {
+            return CallResult.Create(_ITestService.InsertUseDbContextTransaction(success));
+        }
+
+        [HttpGet]
+        public ActionResult<CallResult> InsertUseTransactionScope(bool success)
+        {
+            return CallResult.Create(_ITestService.InsertUseTransactionScope(success));
+        }
     }
 }

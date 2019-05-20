@@ -7,13 +7,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using OF.Core;
-using OF.Core.DbContextCore;
 using OF.Core.Extensions;
 using OF.Core.Helpers;
 using OF.Core.IoC;
-using OF.Core.Jwt;
 using OF.Core.Middleware;
-using OF.Core.Service;
 using OF.Core.Web;
 using System;
 using System.Threading.Tasks;
@@ -54,25 +51,7 @@ namespace OF.WebShell
         /// <param name="services"></param>
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services
-                .AddOFServices()
-                .Configure<DbContextOption>(options => options.ConnectionString = Configuration.GetConnectionString("connectionString"))
-                .AddDistributedRedisCache(option => option.Configuration = Configuration.GetConnectionString("redisconnectionString"))
-                .AddTransient<IDbContextCore, SqlServerDbContext>()
-                .AddJwt(Configuration)
-                .AddMvc()
-                .AddJsonOptions(options =>
-                {
-                    // 忽略循环引用
-                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-                    // 不使用驼峰
-                    options.SerializerSettings.ContractResolver = new DefaultContractResolver();
-                    // 设置时间格式
-                    options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
-                    // 如字段为null值，该字段不会返回到前端
-                    // options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
-                });
-
+            services.AddOFServices(Configuration);
             return AspectCoreContainer.BuildServiceProvider(services);
         }
         #endregion
@@ -85,8 +64,6 @@ namespace OF.WebShell
         /// <param name="env"></param>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            OFHttpContext.Configure(app);
-
             app.UseExceptionHandler(builder => builder.Run(async context => await ErrorEvent(context)));
             app.UseSession();
             app.UseMiddleware<RequestMiddleware>();
