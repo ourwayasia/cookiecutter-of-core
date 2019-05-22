@@ -1,0 +1,10 @@
+﻿服务开发说明
+
+1、增加定时服务，在Jobs中添加一个类继承IJob，声明Invoke属性即可。
+2、用以下脚本创建后台服务，注意加-svc参数。
+
+--创建自启服务
+sc create OFService binPath= "D:\WinService\OFService\OF.WinService.exe -svc" displayname= "OFService服务框架" start= auto
+
+--创建服务
+sc delete OFService

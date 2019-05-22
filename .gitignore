@@ -9,3 +9,4 @@
 /{{cookiecutter.project_name}}/NetCore/Application/OF.{{cookiecutter.project_name}}/OF.{{cookiecutter.project_name}}.BLL/obj
 /{{cookiecutter.project_name}}/NetCore/Application/OF.{{cookiecutter.project_name}}/OF.{{cookiecutter.project_name}}.Web/obj
 /{{cookiecutter.project_name}}/NetCore/OF.vssscc
+/{{cookiecutter.project_name}}/NetCore/OF.WinService/obj
