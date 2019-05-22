@@ -85,9 +85,7 @@ namespace OF.WebShell
             LogHelper.WriteError<Startup>(error);
             context.Response.Clear();
             context.Response.ContentType = "application/json; charset=utf-8";
-            var result = CallResult.Create();
-            result.Code = CallResultCode.Error;
-            result.Message = "系统异常：" + error.Message;
+            var result = CallResult.Create(CallResultCode.Error, "系统异常：" + error.Message);
             return context.Response.WriteAsync(result.ToJson());
         }
         #endregion

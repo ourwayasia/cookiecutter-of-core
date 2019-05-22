@@ -1,12 +1,15 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using OF.Core;
 using OF.Core.Config;
 using OF.Core.Data;
 using OF.Core.DbContextCore;
+using OF.Core.Extensions;
 using OF.Core.Helpers;
 using OF.Core.IoC;
 using OF.Core.Web;
 using OF.Sys.Entities;
+using OF.{{cookiecutter.project_name}}.Entities;
 using OF.{{cookiecutter.project_name}}.IServices;
 using System;
 using System.Collections.Generic;
@@ -107,21 +110,57 @@ namespace OF.{{cookiecutter.project_name}}.BLL
 
         #endregion
 
+        #region 简单增删改查示例
+        public string CRUDSimple()
+        {
+            //增删改查服务
+            var service = IoCHelper.Resolve<ICRUDService<ts_test>>();
+
+            //构建实体，从前端或根据业务逻辑构建获得
+            ts_test one = new ts_test()
+            {
+                Id = GuidHelper.NewGuid().ToString(),
+
+                TestName = "名称" + DateTime.Now.ToShortTimeString(),
+
+                CreatorId = GuidHelper.NewGuid().ToString(),
+                CreatorName = "创建人",
+                CreateDate = DateTime.Now,
+
+                Timestamp = DateTime.Now.ToUnixTimestamp().ToString()
+            };
+
+            //新增
+            service.Insert(one);
+
+            //更新
+            one.TestName += "update";
+            service.Update(one);
+
+            //删除
+            service.Delete(one.Id);
+
+            //查询
+            var list = service.PageQuery(new PageInfo() { PageIndex = 1, PageSize = 10 });
+
+            return list.ToJson();
+        }
+        #endregion
+
         #region 数据库理务使用示例
         public string Insert(bool success)
         {
             //插入数据
-
-            var service1 = AspectCoreContainer.Resolve<ICRUDService<sys_log>>();
+            var service1 = IoCHelper.Resolve<ICRUDService<sys_log>>();
             sys_log e1 = new sys_log()
             {
-                Id = GuidExtensions.NewComb().ToString(),
+                Id = GuidHelper.NewGuid().ToString(),
                 CreateDate = DateTime.Now
             };
             int i1 = service1.Insert(e1);
 
-            var service2 = AspectCoreContainer.Resolve<ICRUDService<sys_file>>();
-            string id = success ? GuidExtensions.NewComb().ToString() : GuidExtensions.NewComb().ToString().PadRight(100, '0');
+            var service2 = IoCHelper.Resolve<ICRUDService<sys_file>>();
+            string id = success ? GuidHelper.NewGuid().ToString() : GuidHelper.NewGuid().ToString().PadRight(100, '0');
             sys_file e2 = new sys_file()
             {
                 Id = id,
@@ -136,21 +175,23 @@ namespace OF.{{cookiecutter.project_name}}.BLL
         public string InsertUseDbContextTransaction(bool success)
         {
             //插入数据，使用数据库事务，不支持多连接。
-            var db = AspectCoreContainer.Resolve<IDbContextCore>();
-            using (IDbContextTransaction trans = db.BeginTransaction())
+            var dbContext = IoCHelper.Resolve<IDbContextCore>();
+            using (IDbContextTransaction trans = dbContext.BeginTransaction())
             {
                 try
                 {
-                    var service1 = AspectCoreContainer.Resolve<ICRUDService<sys_log>>();
+                    var service1 = IoCHelper.Resolve<ICRUDService<sys_log>>();
+                    service1.Use(dbContext);
                     sys_log e1 = new sys_log()
                     {
-                        Id = GuidExtensions.NewComb().ToString(),
+                        Id = GuidHelper.NewGuid().ToString(),
                         CreateDate = DateTime.Now
                     };
                     int i1 = service1.Insert(e1);
 
-                    var service2 = AspectCoreContainer.Resolve<ICRUDService<sys_file>>();
-                    string id = success ? GuidExtensions.NewComb().ToString() : GuidExtensions.NewComb().ToString().PadRight(100, '0');
+                    var service2 = IoCHelper.Resolve<ICRUDService<sys_file>>();
+                    service2.Use(dbContext);
+                    string id = success ? GuidHelper.NewGuid().ToString() : GuidHelper.NewGuid().ToString().PadRight(100, '0');
                     sys_file e2 = new sys_file()
                     {
                         Id = id,
@@ -177,16 +218,16 @@ namespace OF.{{cookiecutter.project_name}}.BLL
             {
                 try
                 {
-                    var service1 = AspectCoreContainer.Resolve<ICRUDService<sys_log>>();
+                    var service1 = IoCHelper.Resolve<ICRUDService<sys_log>>();
                     sys_log e1 = new sys_log()
                     {
-                        Id = GuidExtensions.NewComb().ToString(),
+                        Id = GuidHelper.NewGuid().ToString(),
                         CreateDate = DateTime.Now
                     };
                     int i1 = service1.Insert(e1);
 
-                    var service2 = AspectCoreContainer.Resolve<ICRUDService<sys_file>>();
-                    string id = success ? GuidExtensions.NewComb().ToString() : GuidExtensions.NewComb().ToString().PadRight(100, '0');
+                    var service2 = IoCHelper.Resolve<ICRUDService<sys_file>>();
+                    string id = success ? GuidHelper.NewGuid().ToString() : GuidHelper.NewGuid().ToString().PadRight(100, '0');
                     sys_file e2 = new sys_file()
                     {
                         Id = id,

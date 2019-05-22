@@ -9,6 +9,7 @@ using OF.Core;
 using OF.Core.Extensions;
 using OF.Core.Models;
 using Microsoft.Extensions.Caching.Distributed;
+using OF.Core.Helpers;
 
 namespace OF.{{cookiecutter.project_name}}.Web.Controllers
 {
@@ -19,33 +20,29 @@ namespace OF.{{cookiecutter.project_name}}.Web.Controllers
     [Route("{{cookiecutter.project_name}}/[controller]/[action]")]
     public class TestController : ApiCtrlBase
     {
-        private ITestService _ITestService;
-        private IIoCTestService _IIoCTestService;
-
-        public TestController(IServiceProvider serviceProvider)
-        {
-            _ITestService = serviceProvider.GetService<ITestService>();
-            _IIoCTestService = serviceProvider.GetService<IIoCTestService>();
-        }
+        private ITestService _ITestService = IoCHelper.Resolve<ITestService>();
+        private IIoCTestService _IIoCTestService = IoCHelper.Resolve<IIoCTestService>();
 
         //示例地址列表
-        public ActionResult<string> UrlList()
+        public ActionResult<string> Index()
         {
             Dictionary<string, string> result = new Dictionary<string, string>();
 
             string url = $"{Request.Scheme}://{Request.Host.Value}/";
-            
+            //服务注入示例
             result.Add("GetIoCService", url + "{{cookiecutter.project_name}}/Test/GetIoCService");
-
+            //配置命名用示例
             result.Add("GetConfigValue", url + "{{cookiecutter.project_name}}/Test/GetConfigValue?key=keyone");
-
+            //缓存使用示例
             result.Add("SetSession", url + "{{cookiecutter.project_name}}/Test/SetSession?key=keyone");
             result.Add("GetSession", url + "{{cookiecutter.project_name}}/Test/GetSession?key=keyone");
             result.Add("SetCookies", url + "{{cookiecutter.project_name}}/Test/SetCookies?key=keyone");
             result.Add("GetCookies", url + "{{cookiecutter.project_name}}/Test/GetCookies?key=keyone");
             result.Add("SetCache", url + "{{cookiecutter.project_name}}/Test/SetCache?key=keyone");
             result.Add("GetCache", url + "{{cookiecutter.project_name}}/Test/GetCache?key=keyone");
-
+            //增删改查示例
+            result.Add("CRUDSimple", url + "{{cookiecutter.project_name}}/Test/CRUDSimple");
+            //数据库事务示例
             result.Add("InsertTrue", url + "{{cookiecutter.project_name}}/Test/Insert?success=true");
             result.Add("InsertFalse", url + "{{cookiecutter.project_name}}/Test/Insert?success=false");
             result.Add("InsertUseDbContextTransactionTrue", url + "{{cookiecutter.project_name}}/Test/InsertUseDbContextTransaction?success=true");
@@ -113,6 +110,15 @@ namespace OF.{{cookiecutter.project_name}}.Web.Controllers
         }
         #endregion
 
+        #region 增删改查示例
+        [HttpGet]
+        public ActionResult<CallResult> CRUDSimple()
+        {
+            return CallResult.Create(_ITestService.CRUDSimple());
+        }
+        #endregion
+
+        #region 数据库事务示例
         [HttpGet]
         public ActionResult<CallResult> Insert(bool success)
         {
@@ -129,6 +135,7 @@ namespace OF.{{cookiecutter.project_name}}.Web.Controllers
         public ActionResult<CallResult> InsertUseTransactionScope(bool success)
         {
             return CallResult.Create(_ITestService.InsertUseTransactionScope(success));
-        }
+        } 
+        #endregion
     }
 }
