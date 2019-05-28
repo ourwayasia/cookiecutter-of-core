@@ -10,6 +10,7 @@ using OF.Core.Extensions;
 using OF.Core.Models;
 using Microsoft.Extensions.Caching.Distributed;
 using OF.Core.Helpers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace OF.{{cookiecutter.project_name}}.Web.Controllers
 {
@@ -55,6 +56,9 @@ namespace OF.{{cookiecutter.project_name}}.Web.Controllers
             {
                 stringBuilder.AppendLine($"{item.Key} : {item.Value}");
             }
+
+            stringBuilder.AppendLine(User.Identity.Name);
+            stringBuilder.AppendLine(User.Identity.IsAuthenticated.ToString());
 
             return stringBuilder.ToString() ;
         }

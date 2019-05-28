@@ -38,7 +38,7 @@ namespace OF.WebShell
         {
             Configuration = configuration;
 
-            // 初始化log4net
+            //初始化log4net
             var Repository = log4net.LogManager.CreateRepository("NETCoreRepository");
             LogHelper.SetConfig(Repository, "log4net.config");
         }
@@ -65,9 +65,10 @@ namespace OF.WebShell
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseExceptionHandler(builder => builder.Run(async context => await ErrorEvent(context)));
+            app.UseStaticFiles();
             app.UseSession();
+            app.UseAuthentication();
             app.UseMiddleware<RequestMiddleware>();
-            app.UseMiddleware<JwtMiddleware>();
             app.UseMvc();
         }
         #endregion
