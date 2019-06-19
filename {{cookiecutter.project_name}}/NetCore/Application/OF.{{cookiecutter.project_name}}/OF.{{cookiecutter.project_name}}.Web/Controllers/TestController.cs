@@ -18,6 +18,7 @@ namespace OF.{{cookiecutter.project_name}}.Web.Controllers
     /// <summary>
     /// 测试用，可以删除，包括IService，Service，Controller
     /// </summary>
+    [AllowAnonymous]
     [Route("{{cookiecutter.project_name}}/[controller]/[action]")]
     public class TestController : ApiCtrlBase
     {
@@ -30,6 +31,8 @@ namespace OF.{{cookiecutter.project_name}}.Web.Controllers
             Dictionary<string, string> result = new Dictionary<string, string>();
 
             string url = $"{Request.Scheme}://{Request.Host.Value}/";
+            //服务列表
+            result.Add("Services", url + "Sys/System/Services");
             //服务注入示例
             result.Add("GetIoCService", url + "{{cookiecutter.project_name}}/Test/GetIoCService");
             //配置命名用示例

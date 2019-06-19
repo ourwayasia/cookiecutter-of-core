@@ -54,7 +54,6 @@ namespace OF.{{cookiecutter.project_name}}.BLL
             //取配置值，空值返回自定义值
             var value2 = Config.Instance.Get(key, "null value");
 
-
             return $"value1:{value1};value2:{value2}";
         }
         #endregion
@@ -121,29 +120,60 @@ namespace OF.{{cookiecutter.project_name}}.BLL
             {
                 Id = GuidHelper.NewGuid().ToString(),
 
-                TestName = "名称" + DateTime.Now.ToShortTimeString(),
+                TestName = "单个名称" + DateTime.Now.Millisecond,
 
                 CreatorId = GuidHelper.NewGuid().ToString(),
                 CreatorName = "创建人",
-                CreateDate = DateTime.Now,
-
-                Timestamp = DateTime.Now.ToUnixTimestamp().ToString()
+                CreateDate = DateTime.Now
             };
 
-            //新增
+            //新增单个实体
             service.Insert(one);
 
-            //更新
+            //更新单个实体
             one.TestName += "update";
             service.Update(one);
 
-            //删除
+            //查询分页
+            var pagelist = service.PageQuery(new PageInfo() { PageIndex = 1, PageSize = 10 });
+
+            //删除单个实体
             service.Delete(one.Id);
 
-            //查询
-            var list = service.PageQuery(new PageInfo() { PageIndex = 1, PageSize = 10 });
 
-            return list.ToJson();
+
+            //新增多个实体
+            var list = new List<ts_test>() { new ts_test()
+            {
+                Id = GuidHelper.NewGuid().ToString(),
+
+                TestName = "批量名称" + DateTime.Now.Millisecond,
+
+                CreatorId = GuidHelper.NewGuid().ToString(),
+                CreatorName = "创建人",
+                CreateDate = DateTime.Now
+            }, new ts_test()
+            {
+                Id = GuidHelper.NewGuid().ToString(),
+
+                TestName = "批量名称" + DateTime.Now.Millisecond,
+
+                CreatorId = GuidHelper.NewGuid().ToString(),
+                CreatorName = "创建人",
+                CreateDate = DateTime.Now
+            } };
+            service.Insert(list);
+
+            //更新方式二
+            service.Update(x => x.CreatorName == list[0].CreatorName, y => new ts_test { TestName = y.TestName + "UpdateForExpression" });
+
+            //查询分页
+            pagelist = service.PageQuery(new PageInfo() { PageIndex = 1, PageSize = 10 });
+
+            //删除方式二
+            service.Delete(x => x.CreatorName == list[0].CreatorName);
+
+            return pagelist.ToJson();
         }
         #endregion
 
@@ -169,7 +199,6 @@ namespace OF.{{cookiecutter.project_name}}.BLL
             int i2 = service2.Insert(e2);
 
             return $"成功{i1},{i2}";
-
         }
 
         public string InsertUseDbContextTransaction(bool success)

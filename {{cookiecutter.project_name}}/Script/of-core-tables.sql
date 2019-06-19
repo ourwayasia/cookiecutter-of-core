@@ -154,7 +154,8 @@ CREATE TABLE [dbo].[sys_menu](
 	[Status] [int] NULL,
 	[IsDeleted] [int] NULL,
 	[Timestamp] [nvarchar](64) NULL,
-	[IsQuickMenu] [int] NULL
+	[IsQuickMenu] [int] NULL,
+	[MenuType] [int] NULL
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
