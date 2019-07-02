@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Application\OF.{{cookiecutter.project_name}}\OF.{{cookiecutter.project_name}}.BLL\OF.{{cookiecutter.project_name}}.BLL.csproj" />
-    <ProjectReference Include="..\Application\OF.{{cookiecutter.project_name}}\OF.{{cookiecutter.project_name}}.Web\OF.{{cookiecutter.project_name}}.Web.csproj" />
+    <ProjectReference Include="..\..\Application\OF.{{cookiecutter.project_name}}\OF.{{cookiecutter.project_name}}.BLL\OF.{{cookiecutter.project_name}}.BLL.csproj" />
+    <ProjectReference Include="..\..\Application\OF.{{cookiecutter.project_name}}\OF.{{cookiecutter.project_name}}.Web\OF.{{cookiecutter.project_name}}.Web.csproj" />
   </ItemGroup>
 
   <ItemGroup>
