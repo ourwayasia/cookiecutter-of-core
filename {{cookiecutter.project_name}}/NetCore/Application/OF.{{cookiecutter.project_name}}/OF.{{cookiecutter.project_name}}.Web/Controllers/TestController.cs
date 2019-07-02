@@ -31,8 +31,8 @@ namespace OF.{{cookiecutter.project_name}}.Web.Controllers
             Dictionary<string, string> result = new Dictionary<string, string>();
 
             string url = $"{Request.Scheme}://{Request.Host.Value}/";
-            //服务列表
-            result.Add("Services", url + "Sys/System/Services");
+
+            result.Add("line0", "代码示例");
             //服务注入示例
             result.Add("GetIoCService", url + "{{cookiecutter.project_name}}/Test/GetIoCService");
             //配置命名用示例
@@ -53,15 +53,28 @@ namespace OF.{{cookiecutter.project_name}}.Web.Controllers
             result.Add("InsertUseDbContextTransactionFalse", url + "{{cookiecutter.project_name}}/Test/InsertUseDbContextTransaction?success=false");
             result.Add("InsertUseTransactionScopeTrue", url + "{{cookiecutter.project_name}}/Test/InsertUseTransactionScope?success=true");
             result.Add("InsertUseTransactionScopeFalse", url + "{{cookiecutter.project_name}}/Test/InsertUseTransactionScope?success=false");
+            //第二数据库示例
+            result.Add("NewDataBase", url + "{{cookiecutter.project_name}}/Test/NewDataBase");
+
+            result.Add("line1", "无权限Api");
+            result.Add("Services", url + "Sys/System/Services");
+
+            result.Add("Config", url + "Sys/Account/Config");
+            result.Add("Login", url + "Sys/Account/login");
+            result.Add("Tenant", url + "Sys/Tenant/LoadJsTreeNodes");
 
             StringBuilder stringBuilder = new StringBuilder();
-            foreach(var item in result)
+            foreach (var item in result)
             {
-                stringBuilder.AppendLine($"{item.Key} : {item.Value}");
+                if (item.Key.StartsWith("line"))
+                    stringBuilder.AppendLine($"===={item.Value}==========================================================");
+                else
+                    stringBuilder.AppendLine($"{item.Key} : {item.Value}");
             }
 
-            stringBuilder.AppendLine(User.Identity.Name);
-            stringBuilder.AppendLine(User.Identity.IsAuthenticated.ToString());
+            stringBuilder.AppendLine("====用户信息==========================================================");
+            stringBuilder.AppendLine("登录：" + User.Identity.IsAuthenticated.ToString());
+            stringBuilder.AppendLine("用户：" + User.Identity.Name);
 
             return stringBuilder.ToString() ;
         }
@@ -142,6 +155,14 @@ namespace OF.{{cookiecutter.project_name}}.Web.Controllers
         public ActionResult<CallResult> InsertUseTransactionScope(bool success)
         {
             return CallResult.Create(_ITestService.InsertUseTransactionScope(success));
+        }
+        #endregion
+
+        #region 第二数据库
+        [HttpGet]
+        public ActionResult<CallResult> NewDataBase()
+        {
+            return CallResult.Create(_ITestService.NewDataBase());
         } 
         #endregion
     }

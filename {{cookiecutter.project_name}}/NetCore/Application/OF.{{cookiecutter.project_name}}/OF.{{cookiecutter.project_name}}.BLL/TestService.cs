@@ -9,10 +9,13 @@ using OF.Core.Helpers;
 using OF.Core.IoC;
 using OF.Core.Web;
 using OF.Sys.Entities;
+using OF.{{cookiecutter.project_name}}.DbContext;
 using OF.{{cookiecutter.project_name}}.Entities;
+using OF.{{cookiecutter.project_name}}.Entities.SSO;
 using OF.{{cookiecutter.project_name}}.IServices;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Transactions;
 
@@ -274,7 +277,24 @@ namespace OF.{{cookiecutter.project_name}}.BLL
                     throw;
                 }
             }
-        } 
+        }
         #endregion
+
+        #region 第二数据库
+        /// <summary>
+        /// 配置使用示例
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public string NewDataBase()
+        {
+            DbContextSSO dbContext = new DbContextSSO();
+
+            var list = dbContext.Set<sso_test>().ToList();
+
+            return list.ToJson();
+        }
+        #endregion
+
     }
 }

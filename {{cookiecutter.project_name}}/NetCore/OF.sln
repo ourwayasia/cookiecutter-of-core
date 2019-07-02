@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shell", "Shell", "{25DFD335-92AC-4889-9181-C8904CB524E4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OF.WebShell", "OF.WebShell\OF.WebShell.csproj", "{5EA04394-9A38-41FF-BDC8-4B8D429D7335}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OF.WebShell", "Shell\OF.WebShell\OF.WebShell.csproj", "{5EA04394-9A38-41FF-BDC8-4B8D429D7335}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{3A6DB9CB-4973-4328-A21B-FE60FCCE71DF}"
 EndProject
@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OF.{{cookiecutter.project_n
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OF.{{cookiecutter.project_name}}.Web", "Application\OF.{{cookiecutter.project_name}}\OF.{{cookiecutter.project_name}}.Web\OF.{{cookiecutter.project_name}}.Web.csproj", "{6EABDF27-6C2D-4D0A-AADA-3EB50510E0F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OF.WinService", "OF.WinService\OF.WinService.csproj", "{5C86F40A-A469-425B-95CD-67391983FF6C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OF.WinService", "Shell\OF.WinService\OF.WinService.csproj", "{5C86F40A-A469-425B-95CD-67391983FF6C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

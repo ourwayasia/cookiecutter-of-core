@@ -21,8 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="OF.Sys.BLL" Version="0.8.2.9" />
-    <PackageReference Include="OF.Sys.Web" Version="0.8.2.9" />
+    <PackageReference Include="OF.Sys.BLL" Version="0.8.3.1" />
+    <PackageReference Include="OF.Sys.Web" Version="0.8.3.1" />
   </ItemGroup>
   
   <ItemGroup>

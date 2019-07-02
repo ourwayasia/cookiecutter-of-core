@@ -10,3 +10,5 @@
 /{{cookiecutter.project_name}}/NetCore/Application/OF.{{cookiecutter.project_name}}/OF.{{cookiecutter.project_name}}.Web/obj
 /{{cookiecutter.project_name}}/NetCore/OF.vssscc
 /{{cookiecutter.project_name}}/NetCore/OF.WinService/obj
+/{{cookiecutter.project_name}}/NetCore/Shell/OF.WebShell/obj
+/{{cookiecutter.project_name}}/NetCore/Shell/OF.WinService/obj
