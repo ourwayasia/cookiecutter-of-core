@@ -12,6 +12,10 @@ CREATE TABLE [dbo].[common_fields](
 	[Status] [int] NULL,
 	[IsDeleted] [int] NULL,
 	[Timestamp] [nvarchar](64) NULL
+ CONSTRAINT [PK_common_fields] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -28,7 +32,11 @@ CREATE TABLE [dbo].[sys_config](
 	[SortNum] [int] NULL,
 	[IsDeleted] [int] NULL,
 	[Timestamp] [nvarchar](64) NULL
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+ CONSTRAINT [PK_sys_config] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
 GO
@@ -40,12 +48,20 @@ CREATE TABLE [dbo].[sys_department](
 	[ParentId] [nvarchar](64) NULL,
 	[No] [nvarchar](64) NULL,
 	[Name] [nvarchar](64) NULL,
+	[FullDepartmentId] [nvarchar](1024) NULL,
+	[FullDepartmentName] [nvarchar](1024) NULL,
+	[LeaderId] [nvarchar](64) NULL,
+	[LeaderName] [nvarchar](64) NULL,
 	[SortNum] [int] NULL,
 	[Status] [int] NULL,
 	[SourceType] [int] NULL,
 	[ThirdId] [nvarchar](64) NULL,
 	[IsDeleted] [int] NULL,
-	[Timestamp] [nvarchar](64) NULL
+	[Timestamp] [nvarchar](64) NULL,
+ CONSTRAINT [PK_sys_department] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -61,6 +77,10 @@ CREATE TABLE [dbo].[sys_dictionary](
 	[SortNum] [int] NULL,
 	[Status] [int] NULL,
 	[Timestamp] [nvarchar](64) NULL
+ CONSTRAINT [PK_sys_dictionary] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -92,6 +112,10 @@ CREATE TABLE [dbo].[sys_employee](
 	[LastModifyPwdDate] [datetime] NULL,
 	[IsDeleted] [int] NULL,
 	[Timestamp] [nvarchar](64) NULL
+ CONSTRAINT [PK_sys_employee] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -116,7 +140,11 @@ CREATE TABLE [dbo].[sys_file](
 	[Timestamp] [nvarchar](64) NULL,
 	[BusinessType] [nvarchar](64) NULL,
 	[BusinessId] [nvarchar](64) NULL
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+ CONSTRAINT [PK_sys_file] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
 GO
@@ -131,7 +159,7 @@ CREATE TABLE [dbo].[sys_log](
 	[CreatorName] [nvarchar](64) NULL,
 	[CreateDate] [datetime] NULL,
 	[Timestamp] [nvarchar](64) NULL,
- CONSTRAINT [PK_SYS_LOG] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_sys_log] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -156,6 +184,10 @@ CREATE TABLE [dbo].[sys_menu](
 	[Timestamp] [nvarchar](64) NULL,
 	[IsQuickMenu] [int] NULL,
 	[MenuType] [int] NULL
+ CONSTRAINT [PK_sys_menu] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -171,7 +203,7 @@ CREATE TABLE [dbo].[sys_mobile_verification_record](
 	[ExpireDate] [datetime] NULL,
 	[Status] [int] NULL,
 	[Timestamp] [nvarchar](64) NULL,
- CONSTRAINT [PK_SYS_MOBILE_VERIFICATION_REC] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_sys_mobile_verification_record] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -191,6 +223,10 @@ CREATE TABLE [dbo].[sys_module](
 	[Status] [int] NULL,
 	[IsDeleted] [int] NULL,
 	[Timestamp] [nvarchar](64) NULL
+ CONSTRAINT [PK_sys_module] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -207,7 +243,11 @@ CREATE TABLE [dbo].[sys_permission](
 	[Actions] [text] NULL,
 	[Timestamp] [nvarchar](64) NULL,
 	[SortNum] [int] NULL
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+ CONSTRAINT [PK_sys_permission] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
 GO
@@ -221,7 +261,7 @@ CREATE TABLE [dbo].[sys_role](
 	[Status] [int] NULL,
 	[IsDeleted] [int] NULL,
 	[Timestamp] [nvarchar](64) NULL,
- CONSTRAINT [PK_SYS_ROLE] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_sys_role] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -239,7 +279,7 @@ CREATE TABLE [dbo].[sys_role_member](
 	[MemberId] [nvarchar](64) NULL,
 	[MemberName] [nvarchar](64) NULL,
 	[Timestamp] [nvarchar](64) NULL,
- CONSTRAINT [PK_SYS_ROLE_MEMBER] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_sys_role_member] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -255,6 +295,10 @@ CREATE TABLE [dbo].[sys_role_permission](
 	[RoleId] [nvarchar](64) NULL,
 	[PermissionId] [nvarchar](64) NULL,
 	[Timestamp] [nvarchar](64) NULL
+ CONSTRAINT [PK_sys_role_permission] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -267,6 +311,10 @@ CREATE TABLE [dbo].[sys_tenant](
 	[Name] [nvarchar](128) NULL,
 	[Description] [nvarchar](512) NULL,
 	[ParentId] [nvarchar](64) NULL,
+	[OwnerType] [nvarchar](32) NULL,
+	[OwnerId] [nvarchar](1024) NULL,
+	[OwnerName] [nvarchar](1024) NULL,
+	[SuperAdminUserId] [nvarchar](64) NULL,
 	[Lang] [nvarchar](64) NULL,
 	[TimeZone] [int] NULL,
 	[AuthUserCount] [int] NULL,
@@ -279,7 +327,7 @@ CREATE TABLE [dbo].[sys_tenant](
 	[CreateDate] [datetime] NULL,
 	[IsDeleted] [int] NULL,
 	[Timestamp] [nvarchar](64) NULL,
- CONSTRAINT [PK_SYS_TENANT] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_sys_tenant] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -445,6 +493,10 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'租户编码' 
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'租户名称' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_tenant', @level2type=N'COLUMN',@level2name=N'Name'
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'租户描述' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_tenant', @level2type=N'COLUMN',@level2name=N'Description'
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'上级租户ID' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_tenant', @level2type=N'COLUMN',@level2name=N'ParentId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'租户所有者类型：department|role' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_tenant', @level2type=N'COLUMN',@level2name=N'OwnerType'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'租户所有者ID' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_tenant', @level2type=N'COLUMN',@level2name=N'OwnerId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'租户所有者名称' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_tenant', @level2type=N'COLUMN',@level2name=N'OwnerName'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'租户超级管理员' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_tenant', @level2type=N'COLUMN',@level2name=N'SuperAdminUserId'
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'语言' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_tenant', @level2type=N'COLUMN',@level2name=N'Lang'
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'时区' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_tenant', @level2type=N'COLUMN',@level2name=N'TimeZone'
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'最大授权用户数' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_tenant', @level2type=N'COLUMN',@level2name=N'AuthUserCount'
