@@ -122,6 +122,29 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+CREATE TABLE [dbo].[sys_employee_secondment](
+	[Id] [nvarchar](64) NOT NULL,
+	[EmployeeId] [nvarchar](64) NULL,
+	[EmployeeNo] [nvarchar](64) NULL,
+	[Account] [nvarchar](64) NULL,
+	[RealName] [nvarchar](128) NULL,
+	[MobileNo] [nvarchar](64) NULL,
+	[FullDepartmentName] [nvarchar](256) NULL,
+	[SecondmentDepartmentId] [nvarchar](64) NULL,
+	[SecondmentDepartmentName] [nvarchar](64) NULL,
+	[SecondmentFullDepartmentId] [nvarchar](1024) NULL,
+	[SecondmentFullDepartmentName] [nvarchar](1024) NULL,
+	[Timestamp] [nvarchar](64) NULL,
+ CONSTRAINT [PK_sys_employee_secondment] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[sys_file](
 	[Id] [nvarchar](64) NOT NULL,
 	[TenantId] [nvarchar](64) NULL,
@@ -400,6 +423,18 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'最后修改�
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'逻辑删除状态（0-正常 1-删除）' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee', @level2type=N'COLUMN',@level2name=N'IsDeleted'
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'时间戳' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee', @level2type=N'COLUMN',@level2name=N'Timestamp'
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'系统员工表' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee'
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'员工号' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee_secondment', @level2type=N'COLUMN',@level2name=N'EmployeeNo'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'账号' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee_secondment', @level2type=N'COLUMN',@level2name=N'Account'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'真实姓名' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee_secondment', @level2type=N'COLUMN',@level2name=N'RealName'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'联系电话' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee_secondment', @level2type=N'COLUMN',@level2name=N'MobileNo'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'所属部门名称' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee_secondment', @level2type=N'COLUMN',@level2name=N'FullDepartmentName'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'挂职部门Id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee_secondment', @level2type=N'COLUMN',@level2name=N'SecondmentDepartmentId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'挂职部门名称' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee_secondment', @level2type=N'COLUMN',@level2name=N'SecondmentDepartmentName'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'挂职部门Id全路径' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee_secondment', @level2type=N'COLUMN',@level2name=N'SecondmentFullDepartmentId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'挂职部门名称全路径' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee_secondment', @level2type=N'COLUMN',@level2name=N'SecondmentFullDepartmentName'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'时间戳' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_employee_secondment', @level2type=N'COLUMN',@level2name=N'Timestamp'
+
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'主键Id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_file', @level2type=N'COLUMN',@level2name=N'Id'
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'租户Id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_file', @level2type=N'COLUMN',@level2name=N'TenantId'
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'文件名' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_file', @level2type=N'COLUMN',@level2name=N'FileName'
