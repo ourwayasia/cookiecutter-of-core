@@ -337,6 +337,8 @@ CREATE TABLE [dbo].[sys_tenant](
 	[OwnerType] [nvarchar](32) NULL,
 	[OwnerId] [nvarchar](1024) NULL,
 	[OwnerName] [nvarchar](1024) NULL,
+	[GroupId] [nvarchar](1024) NULL,
+	[GroupName] [nvarchar](1024) NULL,
 	[SuperAdminUserId] [nvarchar](64) NULL,
 	[Lang] [nvarchar](64) NULL,
 	[TimeZone] [int] NULL,
@@ -356,6 +358,46 @@ CREATE TABLE [dbo].[sys_tenant](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[sys_groups](
+	[Id] [nvarchar](64) NOT NULL,
+	[GroupName] [nvarchar](128) NULL,
+	[SortNum] [int] NULL,
+	[Status] [int] NULL,
+	[IsDeleted] [int] NULL,
+	[CreatorId] [nvarchar](64) NULL,
+	[CreatorName] [nvarchar](64) NULL,
+	[CreateDate] [datetime] NULL,
+	[Timestamp] [nvarchar](64) NULL,
+ CONSTRAINT [PK_sys_groups] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[sys_groups_member](
+	[Id] [nvarchar](64) NOT NULL,
+	[GroupId] [nvarchar](64) NULL,
+	[MemberType] [int] NULL,
+	[MemberId] [nvarchar](64) NULL,
+	[MemberName] [nvarchar](64) NULL,
+	[Timestamp] [nvarchar](64) NULL,
+ CONSTRAINT [PK_sys_groups_member] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
 
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'主键Id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'common_fields', @level2type=N'COLUMN',@level2name=N'Id'
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'租户Id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'common_fields', @level2type=N'COLUMN',@level2name=N'TenantId'
@@ -545,3 +587,22 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'创建时间' 
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'逻辑删除状态(0-正常 1-已删除）' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_tenant', @level2type=N'COLUMN',@level2name=N'IsDeleted'
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'时间戳' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_tenant', @level2type=N'COLUMN',@level2name=N'Timestamp'
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'租户表' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_tenant'
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'主键Id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_groups', @level2type=N'COLUMN',@level2name=N'Id'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'组名称' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_groups', @level2type=N'COLUMN',@level2name=N'GroupName'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'排序号' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_groups', @level2type=N'COLUMN',@level2name=N'SortNum'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'状态标识(0-禁用 1-启用)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_groups', @level2type=N'COLUMN',@level2name=N'Status'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'删除标识(0-正常 1-已删除)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_groups', @level2type=N'COLUMN',@level2name=N'IsDeleted'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'创建人Id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_groups', @level2type=N'COLUMN',@level2name=N'CreatorId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'创建人名称' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_groups', @level2type=N'COLUMN',@level2name=N'CreatorName'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'创建时间' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_groups', @level2type=N'COLUMN',@level2name=N'CreateDate'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'时间戳' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_groups', @level2type=N'COLUMN',@level2name=N'Timestamp'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'组表（用途：租户管理）' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_groups'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'主键Id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_groups_member', @level2type=N'COLUMN',@level2name=N'Id'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'组的Id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_groups_member', @level2type=N'COLUMN',@level2name=N'GroupId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'成员类型,1:员工,' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_groups_member', @level2type=N'COLUMN',@level2name=N'MemberType'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'成员Id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_groups_member', @level2type=N'COLUMN',@level2name=N'MemberId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'名称' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_groups_member', @level2type=N'COLUMN',@level2name=N'MemberName'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'时间戳' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_groups_member', @level2type=N'COLUMN',@level2name=N'Timestamp'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'组成员表' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_groups_member'
+
