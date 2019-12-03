@@ -52,10 +52,10 @@ namespace OF.{{cookiecutter.project_name}}.BLL
         {
 
             //取配置值，空值返回string.Empty
-            var value1 = Config.Instance.Get(key);
+            var value1 = ConfigHelper.Get(key);
 
             //取配置值，空值返回自定义值
-            var value2 = Config.Instance.Get(key, "null value");
+            var value2 = ConfigHelper.Get(key, "null value");
 
             return $"value1:{value1};value2:{value2}";
         }
@@ -291,6 +291,24 @@ namespace OF.{{cookiecutter.project_name}}.BLL
             DbContextSSO dbContext = new DbContextSSO();
 
             var list = dbContext.Set<sso_test>().ToList();
+
+            return list.ToJson();
+        }
+        #endregion
+
+        #region 使用原生Sql查询
+        /// <summary>
+        /// 使用原生Sql查询
+        /// </summary>
+        /// <returns></returns>
+        public string FromSql()
+        {
+            //主数据库
+            var tests = (IoCHelper.Resolve<IDbContextCore>() as DbContextCore).Set<ts_test>().FromSql("select * from ts_test").OrderBy(x => x.TestName);
+
+            //二数据库
+            DbContextSSO dbContext = new DbContextSSO();
+            var list = dbContext.Set<sso_test>().FromSql("select * from sso_test").Where(x => x.TestName == "test");
 
             return list.ToJson();
         }

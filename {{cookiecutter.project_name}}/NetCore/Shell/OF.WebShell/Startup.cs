@@ -67,6 +67,7 @@ namespace OF.WebShell
         {
             app.UseExceptionHandler(builder => builder.Run(async context => await ErrorEvent(context)));
             app.UseStaticFiles();
+            app.UseDefaultFiles();
             app.UseSession();
             app.UseAuthentication();
             app.UseMiddleware<RequestMiddleware>();

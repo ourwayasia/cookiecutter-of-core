@@ -34,5 +34,7 @@ namespace OF.{{cookiecutter.project_name}}.IServices
         string InsertUseTransactionScope(bool success);
 
         string NewDataBase();
+
+        string FromSql();
     }
 }

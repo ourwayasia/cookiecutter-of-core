@@ -163,7 +163,15 @@ namespace OF.{{cookiecutter.project_name}}.Web.Controllers
         public ActionResult<CallResult> NewDataBase()
         {
             return CallResult.Create(_ITestService.NewDataBase());
-        } 
+        }
+        #endregion
+
+        #region 使用原生Sql查询
+        [HttpGet]
+        public ActionResult<CallResult> FromSql()
+        {
+            return CallResult.Create(_ITestService.FromSql());
+        }
         #endregion
     }
 }

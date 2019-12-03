@@ -365,6 +365,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[sys_groups](
 	[Id] [nvarchar](64) NOT NULL,
+	[TenantId] [nvarchar](64) NULL,
 	[GroupName] [nvarchar](128) NULL,
 	[SortNum] [int] NULL,
 	[Status] [int] NULL,
@@ -387,6 +388,7 @@ GO
 CREATE TABLE [dbo].[sys_groups_member](
 	[Id] [nvarchar](64) NOT NULL,
 	[GroupId] [nvarchar](64) NULL,
+	[TenantId] [nvarchar](64) NULL,
 	[MemberType] [int] NULL,
 	[MemberId] [nvarchar](64) NULL,
 	[MemberName] [nvarchar](64) NULL,
